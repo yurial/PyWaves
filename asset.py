@@ -1,4 +1,4 @@
-import pywaves
+import yuwaves
 import logging
 
 class Asset(object):
@@ -35,7 +35,7 @@ class Asset(object):
             self._script = ''
             return
 
-        req = pywaves.wrapper('/assets/details/%s' % self.assetId)
+        req = yuwaves.wrapper('/assets/details/%s' % self.assetId)
         self._name = req['name'].encode('ascii', 'ignore')
         self._description = req['description'].encode('ascii', 'ignore')
         self._quantity = req['quantity']
@@ -71,9 +71,9 @@ class AssetPair(object):
         return 'asset1 = %s\nasset2 = %s' % (self.asset1.assetId, self.asset2.assetId)
 
     def first(self):
-        if pywaves.getAssetPriority(self.asset1.assetId) < pywaves.getAssetPriority(self.asset2.assetId):
+        if yuwaves.getAssetPriority(self.asset1.assetId) < yuwaves.getAssetPriority(self.asset2.assetId):
             return self.asset1
-        elif pywaves.getAssetPriority(self.asset1.assetId) > pywaves.getAssetPriority(self.asset2.assetId):
+        elif yuwaves.getAssetPriority(self.asset1.assetId) > yuwaves.getAssetPriority(self.asset2.assetId):
             return self.asset2
         elif len(self.asset1.assetId) < len(self.asset2.assetId):
             return self.asset1
@@ -83,9 +83,9 @@ class AssetPair(object):
             return self.asset2
 
     def second(self):
-        if pywaves.getAssetPriority(self.asset1.assetId) < pywaves.getAssetPriority(self.asset2.assetId):
+        if yuwaves.getAssetPriority(self.asset1.assetId) < yuwaves.getAssetPriority(self.asset2.assetId):
             return self.asset2
-        elif pywaves.getAssetPriority(self.asset1.assetId) > pywaves.getAssetPriority(self.asset2.assetId):
+        elif yuwaves.getAssetPriority(self.asset1.assetId) > yuwaves.getAssetPriority(self.asset2.assetId):
             return self.asset1
         elif len(self.asset1.assetId) < len(self.asset2.assetId):
             return self.asset2
@@ -98,11 +98,11 @@ class AssetPair(object):
         return AssetPair(self.first(), self.second())
 
     def orderbook(self):
-        req = pywaves.wrapper('/matcher/orderbook/%s/%s' % (self.a1, self.a2), host=pywaves.MATCHER)
+        req = yuwaves.wrapper('/matcher/orderbook/%s/%s' % (self.a1, self.a2), host=yuwaves.MATCHER)
         return req
 
     def ticker(self):
-        return pywaves.wrapper('/api/ticker/%s/%s' % (self.a1, self.a2), host=pywaves.DATAFEED)
+        return yuwaves.wrapper('/api/ticker/%s/%s' % (self.a1, self.a2), host=yuwaves.DATAFEED)
 
     def last(self):
         return str(self.ticker()['24h_close'])
@@ -129,16 +129,16 @@ class AssetPair(object):
         return str(self.ticker()['24h_priceVolume'])
 
     def _getMarketData(self, method, params):
-        return pywaves.wrapper('%s/%s/%s/%s' % (method, self.a1, self.a2, params), host=pywaves.DATAFEED)
+        return yuwaves.wrapper('%s/%s/%s/%s' % (method, self.a1, self.a2, params), host=yuwaves.DATAFEED)
 
     def trades(self, *args):
         if len(args)==1:
             limit = args[0]
-            if limit > 0 and limit <= pywaves.MAX_WDF_REQUEST:
+            if limit > 0 and limit <= yuwaves.MAX_WDF_REQUEST:
                 return self._getMarketData('/api/trades/', '%d' % limit)
             else:
                 msg = 'Invalid request. Limit must be >0 and <= 100'
-                pywaves.throw_error(msg)
+                yuwaves.throw_error(msg)
                 return logging.error(msg)
         elif len(args)==2:
             fromTimestamp = args[0]
@@ -149,23 +149,23 @@ class AssetPair(object):
         if len(args)==2:
             timeframe = args[0]
             limit = args[1]
-            if timeframe not in pywaves.VALID_TIMEFRAMES:
+            if timeframe not in yuwaves.VALID_TIMEFRAMES:
                 msg = 'Invalid timeframe'
-                pywaves.throw_error(msg)
+                yuwaves.throw_error(msg)
                 return logging.error(msg)
-            elif limit > 0 and limit <= pywaves.MAX_WDF_REQUEST:
+            elif limit > 0 and limit <= yuwaves.MAX_WDF_REQUEST:
                 return self._getMarketData('/api/candles', '%d/%d' % (timeframe, limit))
             else:
                 msg = 'Invalid request. Limit must be >0 and <= 100'
-                pywaves.throw_error(msg)
+                yuwaves.throw_error(msg)
                 return logging.error(msg)
         elif len(args)==3:
             timeframe = args[0]
             fromTimestamp = args[1]
             toTimestamp = args[2]
-            if timeframe not in pywaves.VALID_TIMEFRAMES:
+            if timeframe not in yuwaves.VALID_TIMEFRAMES:
                 msg = 'Invalid timeframe'
-                pywaves.throw_error(msg)
+                yuwaves.throw_error(msg)
                 return logging.error(msg)
             else:
                 return self._getMarketData('/api/candles', '%d/%d/%d' % (timeframe, fromTimestamp, toTimestamp))

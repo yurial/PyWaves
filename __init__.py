@@ -1,6 +1,6 @@
-# Copyright (C) 2017 PyWaves Developers
+# Copyright (C) 2017 YuWaves Developers
 #
-# This file is part of PyWaves.
+# This file is part of YuWaves.
 #
 # It is subject to the license terms in the LICENSE file found in the top-level
 # directory of this distribution.
@@ -54,13 +54,13 @@ console.setFormatter(formatter)
 logging.getLogger('').addHandler(console)
 
 
-class PyWavesException(ValueError):
+class YuWavesException(ValueError):
     pass
 
 
 def throw_error(msg):
     if THROW_EXCEPTION_ON_ERROR:
-        raise PyWavesException(msg)
+        raise YuWavesException(msg)
 
 
 def setThrowOnError(throw=True):

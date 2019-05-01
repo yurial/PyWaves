@@ -283,7 +283,7 @@ def pubkey_from_privkey(private_key):
     return public_key
 
 def address_from_pubkey(public_key):
-    from pywaves import CHAIN_ID
+    from yuwaves import CHAIN_ID
     pubKey = base58.b58decode(bytes(public_key))
     unhashedAddress = chr(1) + bytes(CHAIN_ID) + hashChain(pubKey)[0:20]
     addressHash = hashChain(str2bytes(unhashedAddress))[0:4]

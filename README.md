@@ -1,24 +1,24 @@
-# PyWaves
-PyWaves is an object-oriented Python interface to the Waves blockchain platform.
+# YuWaves
+YuWaves is an object-oriented Python interface to the Waves blockchain platform.
 
 ## Getting Started
 
-You can install PyWaves using:
+You can install YuWaves using:
 
-    pip install pywaves
+    pip install yuwaves
 
 ## Documentation
 
 The library utilizes classes to represent various Waves data structures:
 
-- pywaves.Address
-- pywaves.Asset
-- pywaves.AssetPair
-- pywaves.Order
+- yuwaves.Address
+- yuwaves.Asset
+- yuwaves.AssetPair
+- yuwaves.Order
 
 #### Code Example
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 myAddress = pw.Address(privateKey='CtMQWJZqfc7PRzSWiMKaGmWFm4q2VN5fMcYyKDBPDx6S')
 otherAddress = pw.Address('3PNTcNiUzppQXDL9RZrK3BcftbujiFqrAfM')
@@ -31,7 +31,7 @@ myAddress.sendAsset(otherAddress, myToken, 50)
 ```
 
 ### Address Class
-__pywaves.Address(address, publicKey, privateKey, seed)__ _Creates a new Address object_
+__yuwaves.Address(address, publicKey, privateKey, seed)__ _Creates a new Address object_
 
 #### attributes:
 - _address_
@@ -79,18 +79,18 @@ __pywaves.Address(address, publicKey, privateKey, seed)__ _Creates a new Address
 
 `createAlias(alias, txFee=DEFAULT_ALIAS_FEE, timestamp=0)` create alias
 
-`sponsorAsset(assetId, minimalFeeInAssets, txFee=pywaves.DEFAULT_SPONSOR_FEE, timestamp=0)` sponsoring assets
+`sponsorAsset(assetId, minimalFeeInAssets, txFee=yuwaves.DEFAULT_SPONSOR_FEE, timestamp=0)` sponsoring assets
 
-`setScript(script, txFee=pywaves.DEFAULT_SCRIPT_FEE, timestamp=0)` sets a script for this address
+`setScript(script, txFee=yuwaves.DEFAULT_SCRIPT_FEE, timestamp=0)` sets a script for this address
 
 `dataTransaction(data, timestamp=0)` sets data for the account. data should be a json array with entries including type (bool, binary, int, string), key and value
 
-`setScript(scriptSource, txFee=pywaves.DEFAULT_SCRIPT_FEE, timestamp=0)` issue a smart asset
+`setScript(scriptSource, txFee=yuwaves.DEFAULT_SCRIPT_FEE, timestamp=0)` issue a smart asset
 
-`setAssetScript(asset, scriptSource, txFee=pywaves.DEFAULT_ASSET_SCRIPT_FEE, timestamp=0)` set a new script for a smart asset
+`setAssetScript(asset, scriptSource, txFee=yuwaves.DEFAULT_ASSET_SCRIPT_FEE, timestamp=0)` set a new script for a smart asset
 
 ### Asset Class
-__pywaves.Asset(assetId)__ _Creates a new Asset object_
+__yuwaves.Asset(assetId)__ _Creates a new Asset object_
 
 #### attributes:
 - _status_
@@ -107,7 +107,7 @@ __pywaves.Asset(assetId)__ _Creates a new Asset object_
 
 
 ### AssetPair Class
-__pywaves.AssetPair(asset1, asset2)__ _Creates a new AssetPair object with 2 Asset objects_
+__yuwaves.AssetPair(asset1, asset2)__ _Creates a new AssetPair object with 2 Asset objects_
 
 #### attributes:
 - _asset1_
@@ -143,7 +143,7 @@ __pywaves.AssetPair(asset1, asset2)__ _Creates a new AssetPair object with 2 Ass
 `candles(timeframe, from, to)` get the candles in from/to interval in the specified timeframe 
 
 ### Order Class
-__pywaves.Order(orderId, assetPair, address='')__ Creates a new Order object
+__yuwaves.Order(orderId, assetPair, address='')__ Creates a new Order object
 
 #### attributes:
 - _status_
@@ -159,33 +159,33 @@ __pywaves.Order(orderId, assetPair, address='')__ Creates a new Order object
 
 
 ## Other functions
-`pywaves.setNode(node, chain, chain_id)`  set node URL ('http://ip-address:port') and chain (either 'mainnet' or 'testnet', or any other chain, if you also define the chain id)
+`yuwaves.setNode(node, chain, chain_id)`  set node URL ('http://ip-address:port') and chain (either 'mainnet' or 'testnet', or any other chain, if you also define the chain id)
 
-`pywaves.setChain(chain, chain_id)`  set chain (either 'mainnet' or 'testnet', or any other chain if you also supply the chain id)
+`yuwaves.setChain(chain, chain_id)`  set chain (either 'mainnet' or 'testnet', or any other chain if you also supply the chain id)
 
-`pywaves.setOffline()`  switch to offline mode; sign tx locally without broadcasting to network
+`yuwaves.setOffline()`  switch to offline mode; sign tx locally without broadcasting to network
 
-`pywaves.setOnline()`  switch to online mode; sign tx locally a broadcast to network
+`yuwaves.setOnline()`  switch to online mode; sign tx locally a broadcast to network
 
-`pywaves.validateAddress(address)`  checks if the provided address is a valid Waves address
+`yuwaves.validateAddress(address)`  checks if the provided address is a valid Waves address
 
-`pywaves.setMatcher(node)`  set matcher URL ('http://ip-address:port')
+`yuwaves.setMatcher(node)`  set matcher URL ('http://ip-address:port')
 
-`pywaves.setDatafeed(node)`  set datafeed URL ('http://ip-address:port')
+`yuwaves.setDatafeed(node)`  set datafeed URL ('http://ip-address:port')
 
-`pywaves.height()` get blockchain height
+`yuwaves.height()` get blockchain height
 
-`pywaves.lastblock()` get last block
+`yuwaves.lastblock()` get last block
 
-`pywaves.block(n)` get block at specified height
+`yuwaves.block(n)` get block at specified height
 
-`pywaves.tx(id)` get transaction details
+`yuwaves.tx(id)` get transaction details
 
-`pywaves.symbols()` get list of symbol-asset mapping
+`yuwaves.symbols()` get list of symbol-asset mapping
 
-`pywaves.markets()` get all traded markets with tickers
+`yuwaves.markets()` get all traded markets with tickers
 
-`pywaves.{SYMBOL_NAME}` get predefined asset for the specified symbol (pywaves.WAVES, pywaves.BTC, pywaves.USD,...)
+`yuwaves.{SYMBOL_NAME}` get predefined asset for the specified symbol (yuwaves.WAVES, yuwaves.BTC, yuwaves.USD,...)
 
 
 ### Default Fees
@@ -203,7 +203,7 @@ The fees for waves/asset transfers, asset issue/reissue/burn and matcher transac
 #### Playing with addresses:
 
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 # generate a new address
 myAddress = pw.Address()  
@@ -226,7 +226,7 @@ myAddress = pw.Address(seed='seven wrist bargain hope pattern banner plastic map
 
 #### Balances:
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 myAddress = pw.Address('3P6WfA4qYtkgwVAsWiiB6yaea2X8zyXncJh')
 
@@ -242,7 +242,7 @@ print("Your asset balance is %18d" % myAddress.balance('DHgwrRvVyqJsepd32YbBqUeD
 
 #### Waves and asset transfers:
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 myAddress = pw.Address(privateKey='CtMQWJZqfc7PRzSWiMKaGmWFm4q2VN5fMcYyKDBPDx6S')
 
@@ -259,7 +259,7 @@ myAddress.sendAsset(recipient = pw.Address('3PNTcNiUzppQXDL9RZrK3BcftbujiFqrAfM'
 
 #### Issuing an asset:
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 myToken = myAddress.issueAsset( name = "MyToken",
                                 description = "This is my first token",
@@ -269,7 +269,7 @@ myToken = myAddress.issueAsset( name = "MyToken",
 
 #### Create an alias:
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 pw.setNode(node = 'http://127.0.0.1:6869', chain = 'testnet')
 
@@ -279,7 +279,7 @@ myAddress.createAlias("MYALIAS1")
 
 #### Mass payment:
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 recipients =   ['3PBbp6bg2YEnHfdJtYM7jzzXYQeb7sx5oFg',
                 '3P4A27aCd3skNja46pcgrLYEnK36TkSzgUp',
@@ -295,7 +295,7 @@ for address in recipients:
 
 #### Mass transfer of Waves (feature 11)
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 transfers = [
 	{ 'recipient': '3N1xca2DY8AEwqRDAJpzUgY99eq8J9h4rB3', 'amount': 1 },
@@ -309,7 +309,7 @@ address.massTransferWaves(transfers)
 
 #### Mass transfer of Assets (feature 11)
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 transfers = [
 	{ 'recipient': '3N1xca2DY8AEwqRDAJpzUgY99eq8J9h4rB3', 'amount': 1 },
@@ -322,7 +322,7 @@ address.massTransferAssets(transfers, pw.Asset('9DtBNdyBCyViLZHptyF1HbQk73F6s7nQ
 ```
 #### Data Transaction: 
 ```python
-import pywaves as py
+import yuwaves as py
 
 myAddress = py.Address(privateKey='CtMQWJZqfc7PRzSWiMKaGmWFm4q2VN5fMcYyKDBPDx6S')
 
@@ -337,7 +337,7 @@ myAddress.dataTransaction(data)
 ```
 #### Token airdrop:
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 myAddress = pw.Address(privateKey = '`')
 myToken = pw.Asset('4ZzED8WJXsvuo2MEm2BmZ87Azw8Sx7TVC6ufSUA5LyTV')
@@ -351,7 +351,7 @@ for address in lines:
 
 #### Add a script to an account:
 ```python
-import pywaves as pw
+import yuwaves as pw
 import base64
 
 pw.setNode(node='<node>', chain='testnet')
@@ -365,7 +365,7 @@ tx = address.setScript(script, txFee=1000000)
 
 #### Issue a Smart Asset
 ```python
-imort pywaves as pw
+imort yuwaves as pw
 import base64
 
 pw.setNode(node='<node>', chain='testnet')
@@ -379,7 +379,7 @@ tx = address.issueSmartAsset('smartTestAsset', 'an asset for testingsmart assets
 
 #### Set a new script for a Smart Asset
 ```python
-import pywaves as pw
+import yuwaves as pw
 import base64
 
 pw.setNode(node='<node>', chain='testnet')
@@ -393,7 +393,7 @@ tx = address.setAssetScript(pw.Asset('<asset id>'), script)
 
 #### Playing with Waves Matcher node (DEX):
 ```python	
-import pywaves as pw
+import yuwaves as pw
 from decimal import Decimal
 
 # set Matcher node to use
@@ -425,7 +425,7 @@ myAddress.cancelOrder(assetPair, myOrder)
 
 #### Getting Market Data from Waves Data Feed (WDF):
 ```python	
-import pywaves as pw
+import yuwaves as pw
 
 # set the asset pair
 WAVES_BTC = pw.AssetPair(pw.WAVES, pw.BTC)
@@ -451,7 +451,7 @@ for t in ohlcv:
 
 #### LPOS
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 # connect to a local testnet node
 pw.setNode(node = 'http://127.0.0.1:6869', chain = 'testnet')
@@ -468,11 +468,11 @@ myAddress.leaseCancel(leaseId)
 ```
 
 
-### Using PyWaves in a Python shell
+### Using YuWaves in a Python shell
 
 #### Check an address balance:
 ```
->>> import pywaves as pw
+>>> import yuwaves as pw
 >>> pw.Address('3P31zvGdh6ai6JK6zZ18TjYzJsa1B83YPoj')
 address = 3P31zvGdh6ai6JK6zZ18TjYzJsa1B83YPoj
 publicKey = 
@@ -494,7 +494,7 @@ balances:
 
 #### Generate a new address:
 ```
->>> import pywaves as pw
+>>> import yuwaves as pw
 >>> pw.Address()
 address = 3P6WfA4qYtkgwVAsWiiB6yaea2X8zyXncJh
 publicKey = EYNuSmW4Adtcc6AMCZyxkiHMPmF2BZ2XxvjpBip3UFZL
@@ -507,7 +507,7 @@ balances:
 
 #### Check an asset:
 ```
->>> import pywaves as pw
+>>> import yuwaves as pw
 >>> pw.Asset('DHgwrRvVyqJsepd32YbBqUeDH4GJ1N984X8QoekjgH8J')
 status = Issued
 assetId = DHgwrRvVyqJsepd32YbBqUeDH4GJ1N984X8QoekjgH8J
@@ -549,7 +549,7 @@ matcher = http://127.0.0.1:6886
 
 #### Offline signing a future transaction:
 ```
->>> import pywaves as pw
+>>> import yuwaves as pw
 >>> pw.setOffline()
 >>> myAddress=pw.Address(privateKey="F2jVbjrKzjUsZ1AQRdnd8MmxFc85NQz5jwvZX4BXswXv")
 >>> recipient=pw.Address("3P8Ya6Ary5gzwnzbBXDp3xjeNG97JEiPcdA")
@@ -569,7 +569,7 @@ matcher = http://127.0.0.1:6886
 
 #### Offline signing time lock/unlock transactions:
 ```
->>> import pywaves as pw
+>>> import yuwaves as pw
 >>> pw.setOffline()
 >>> myAddress=pw.Address(privateKey="F2jVbjrKzjUsZ1AQRdnd8MmxFc85NQz5jwvZX4BXswXv")
 # generate a lockbox address
@@ -602,10 +602,10 @@ matcher = http://127.0.0.1:6886
 
 ## Connecting to a different node or chain
 
-PyWaves supports both mainnet and testnet chains. By default, PyWaves connects to the mainnet RPC server at https://nodes.wavesnodes.com. It's possible to specify a different server and chain with the setNode() function
+YuWaves supports both mainnet and testnet chains. By default, YuWaves connects to the mainnet RPC server at https://nodes.wavesnodes.com. It's possible to specify a different server and chain with the setNode() function
 
 ```python
-import pywaves as pw
+import yuwaves as pw
 
 # connects to a local testnet node
 pw.setNode(node = 'http://127.0.0.1:6869', chain = 'testnet')
@@ -617,5 +617,5 @@ pw.setNode(node = 'http://127.0.0.1:6869', chain = 'mainnet')
 
 
 ## License
-Code released under the [MIT License](https://github.com/PyWaves/PyWaves/blob/master/LICENSE).
+Code released under the [MIT License](https://github.com/YuWaves/YuWaves/blob/master/LICENSE).
 
