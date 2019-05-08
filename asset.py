@@ -55,7 +55,7 @@ def get_getter(name):
     return getter
 
 
-fields = ['quantity', 'decimals', 'issuer', 'name', 'description', 'reissuable', 'script']
+fields = ['quantity', 'decimals', 'issuer', 'name', 'description', 'reissuable', 'scripted']
 for field in fields:
     setattr(Asset, field, property(get_getter(field)))
 
