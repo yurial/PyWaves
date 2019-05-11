@@ -892,7 +892,6 @@ class Address(object):
                 "proofs": [ signature ],
                 "script": 'base64:' + script
             })
-            print(data)
             req = yuwaves.wrapper('/transactions/broadcast', data)
             if yuwaves.OFFLINE:
                 return req
