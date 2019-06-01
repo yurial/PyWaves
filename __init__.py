@@ -202,4 +202,5 @@ TRY = Asset('2mX5DzVKWrAJw8iwdJnV2qtoeVG9h5nTDpTqC1wb1WEN')
 CNY = Asset('DEJbZipbKQjwEiRjx2AqQFucrj5CZ3rAc4ZvFM8nAsoA')
 EUR = Asset('Gtb1WRznfchDnTh37ezoDTJ4wcoKaRsKqKjJjy7nm2zU')
 USD = Asset('Ft8X1v1LTa1ABafufpaCWyVj8KkaxUWE6xBhW6sNFJck')
+VST = Asset('4LHHvYGNKJUg5hj65aGD5vgScvCBmLpdRFtjokvCjSL8')
 
